@@ -157,7 +157,7 @@ def scannetworks(request):
     try:
         test_ip = body.get("ip")
         adb_id = body.get("adb_id")
-        print(test_ip,adb_id)
+        # print(test_ip,adb_id)
         shelf = 1
         resource = 1
 
@@ -165,7 +165,7 @@ def scannetworks(request):
             return JsonResponse({
                 "error": "Missing required fields: ip, adb_id"
             }, status=400)
-        print("before res and after not all")
+        # print("before res and after not all")
 
         res = requests.post(
             f"http://{test_ip}:8080/cli-json/adb/",
@@ -178,9 +178,9 @@ def scannetworks(request):
             },
             timeout=10
         )
-        print(res)
+        # print(res)
         raw = res.json()
-        print(raw)
+        # print(raw)
         output = raw.get("LAST", {}).get("callback_message", "")
 
         parsed = ""
